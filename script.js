@@ -1,7 +1,7 @@
 const display = document.querySelector(".display"); 
 let digitButtons = document.querySelectorAll(".digit");
 let operatorButtons = document.querySelectorAll(".operator");
-let clearButton = document.querySelectorAll(".clear");
+let clearButton = document.querySelector(".clear");
 
 let a = null;
 let b = null;
@@ -28,6 +28,32 @@ digitButtons.forEach(button => {
         
     });
 });
+
+operatorButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        const value = e.target.textContent;
+
+        if(value !== "="){
+            operator = value;
+            display.textContent = operator;
+        } else{
+            a = parseFloat(a);
+            b = parseFloat(b);
+            let result = operate(operator, a, b);
+            display.textContent = result;
+            a = result;
+            b = null; 
+            operator = null;
+        }
+    });
+});
+
+clearButton.addEventListener("click", () => {
+    a = null;
+    b = null;
+    operator = null;
+    display.textContent = "0";
+})
 
 
 function operate(operator, a, b){
