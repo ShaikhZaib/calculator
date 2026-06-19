@@ -1,0 +1,36 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 70vh;
+    border: 2px solid #000;
+}
+
+.display{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    font-size: 2rem;
+}
+
+.btn-pad{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    width: 100%;
+}
+
+.btn-pad button{
+    width: 25%;
+    height: 25%;
+    font-size: 24px;
+}
