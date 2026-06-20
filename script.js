@@ -2,6 +2,7 @@ const display = document.querySelector(".display");
 let digitButtons = document.querySelectorAll(".digit");
 let operatorButtons = document.querySelectorAll(".operator");
 let clearButton = document.querySelector(".clear");
+const decimal = document.querySelector(".decimal");
 
 let a = null;
 let b = null;
@@ -93,6 +94,35 @@ clearButton.addEventListener("click", () => {
     b = null;
     operator = null;
     display.textContent = "0";
+})
+
+decimal.addEventListener("click", () =>{
+    if(isResultDisplayed){
+        a = "0.";
+        display.textContent = a;
+        isResultDisplayed = false;
+        return;
+    }
+
+    if(operator === null){
+        if(a === null){
+            a = "0.";
+        } else if(a.includes(".")){
+            return;
+        } else{
+            a += ".";
+        }
+        display.textContent = a;
+    } else{
+        if(b === null){
+            b = "0.";
+        } else if(b.includes(".")){
+            return;
+        } else{
+            b += ".";
+        }
+        display.textContent = b;
+    }
 })
 
 

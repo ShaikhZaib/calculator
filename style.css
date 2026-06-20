@@ -31,6 +31,10 @@ body{
 
 .btn-pad button{
     width: 25%;
-    height: 25%;
+    height: 20%;
     font-size: 24px;
 }
+
+.btn-pad button.double-width{
+    width: 50%;
+} 
