@@ -95,7 +95,7 @@ clearButton.addEventListener("click", () => {
     b = null;
     operator = null;
     display.textContent = "0";
-})
+});
 
 decimal.addEventListener("click", () =>{
     if(isResultDisplayed){
@@ -124,7 +124,7 @@ decimal.addEventListener("click", () =>{
         }
         display.textContent = b;
     }
-})
+});
 
 backspace.addEventListener("click", () => {
     if(isResultDisplayed) return;
@@ -152,8 +152,21 @@ backspace.addEventListener("click", () => {
             }
         }
     }
-})
+});
 
+window.addEventListener("keydown", (e) => {
+    let pressedKey = e.key;
+    if(pressedKey === "Enter") pressedKey = "=";
+    if(pressedKey === "Escape") pressedKey = "AC";
+    if (pressedKey === "Backspace") pressedKey = "⌫";
+
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        if(button.textContent === pressedKey){
+            button.click();
+        }
+    })
+});
 
 function operate(operator, a, b){
     switch(operator){
