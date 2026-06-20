@@ -3,6 +3,7 @@ let digitButtons = document.querySelectorAll(".digit");
 let operatorButtons = document.querySelectorAll(".operator");
 let clearButton = document.querySelector(".clear");
 const decimal = document.querySelector(".decimal");
+const backspace = document.querySelector(".backspace");
 
 let a = null;
 let b = null;
@@ -122,6 +123,34 @@ decimal.addEventListener("click", () =>{
             b += ".";
         }
         display.textContent = b;
+    }
+})
+
+backspace.addEventListener("click", () => {
+    if(isResultDisplayed) return;
+
+    if(operator === null){
+        if(a !== null){
+            a = a.slice(0, -1);
+
+            if(a === ""){
+                a = null;
+                display.textContent = "0";
+            } else{
+                display.textContent = a;
+            }
+        }
+    } else{
+        if(b !== null){
+            b = b.slice(0, -1);
+
+            if(b === ""){
+                b = null;
+                display.textContent = "0";
+            } else{
+                display.textContent = b;
+            }
+        }
     }
 })
 
