@@ -6,10 +6,19 @@ let clearButton = document.querySelector(".clear");
 let a = null;
 let b = null;
 let operator = null;
+let isResultDisplayed = false;
 
 digitButtons.forEach(button => {
     button.addEventListener("click", (e) => {
         const value = e.target.textContent;
+
+        if(isResultDisplayed){      
+            a = value;
+            display.textContent = a;
+            isResultDisplayed = false;
+            return;
+        }
+
         if(operator === null){
             if(a === null){
                 a = value;
@@ -53,7 +62,12 @@ operatorButtons.forEach(button => {
                 }
             }
             operator = value;
+            isResultDisplayed = false;
         } else{
+            if(a === null || b === null || operator === null){
+                return;
+            }
+
             a = parseFloat(a);
             b = parseFloat(b);
             let result = operate(operator, a, b);
@@ -68,6 +82,7 @@ operatorButtons.forEach(button => {
                 a = result;
                 b = null; 
                 operator = null;
+                isResultDisplayed = true;
             }
         }
     });
