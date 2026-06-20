@@ -156,6 +156,12 @@ backspace.addEventListener("click", () => {
 
 window.addEventListener("keydown", (e) => {
     let pressedKey = e.key;
+
+    const targetKeys = ["Enter", "Escape", "Backspace", "+", "-", "*", "/", ".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    if(targetKeys.includes(pressedKey)){
+        e.preventDefault();
+    }
+
     if(pressedKey === "Enter") pressedKey = "=";
     if(pressedKey === "Escape") pressedKey = "AC";
     if (pressedKey === "Backspace") pressedKey = "⌫";
