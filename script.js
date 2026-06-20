@@ -34,16 +34,41 @@ operatorButtons.forEach(button => {
         const value = e.target.textContent;
 
         if(value !== "="){
+            if(a !== null && b !== null && operator !== null){
+                a = parseFloat(a);
+                b = parseFloat(b);
+                let result = operate(operator, a, b);
+                if(result ===  "You can't divide by zero!"){
+                    display.textContent = result;
+                    a = null;
+                    b = null; 
+                    operator = null;
+                    return;
+                } else{
+                    result = Math.round(result * 10000) / 10000
+                    display.textContent = result;
+                    a = result;
+                    b = null; 
+                    operator = null;
+                }
+            }
             operator = value;
-            display.textContent = operator;
         } else{
             a = parseFloat(a);
             b = parseFloat(b);
             let result = operate(operator, a, b);
-            display.textContent = result;
-            a = result;
-            b = null; 
-            operator = null;
+            if(result ===  "You can't divide by zero!"){
+                display.textContent = result;
+                a = null;
+                b = null; 
+                operator = null;
+            } else{
+                result = Math.round(result * 10000) / 10000
+                display.textContent = result;
+                a = result;
+                b = null; 
+                operator = null;
+            }
         }
     });
 });
@@ -84,6 +109,8 @@ function multiply(a, b){
 }
 
 function division(a, b){
-    if(b === 0) return "You can't divide by zero!";
+    if(b === 0) {
+        return "You can't divide by zero!";
+    }
     return a / b;
 }
